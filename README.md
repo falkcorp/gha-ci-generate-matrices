@@ -8,11 +8,11 @@ with intelligent fallback handling and optional dockerized execution.
 ```yaml
 - name: Load config
   id: config
-  uses: jdfalk/load-config-action@v1
+  uses: falkcorp/gha-load-config@v1
 
 - name: Generate CI matrices
   id: matrices
-  uses: jdfalk/ci-generate-matrices-action@v1
+  uses: falkcorp/gha-ci-generate-matrices@v1
   with:
     repository-config: ${{ steps.config.outputs.config }}
     include-linux: true
@@ -28,28 +28,28 @@ with intelligent fallback handling and optional dockerized execution.
 ### Force Docker Execution
 
 ```yaml
-- uses: jdfalk/ci-generate-matrices-action@v1
+- uses: falkcorp/gha-ci-generate-matrices@v1
   id: matrices
   with:
     use-docker: true
-    docker-image: ghcr.io/jdfalk/ci-generate-matrices-action:main
+    docker-image: ghcr.io/falkcorp/gha-ci-generate-matrices:main
 ```
 
 ## Inputs
 
-| Input                         | Description                                                      | Default                                           |
-| ----------------------------- | ---------------------------------------------------------------- | ------------------------------------------------- |
-| `repository-config`           | Repository configuration as JSON                                 | `{}`                                              |
-| `fallback-go-version`         | Fallback Go version                                              | `1.23`                                            |
-| `fallback-python-version`     | Fallback Python version                                          | `3.12`                                            |
-| `fallback-rust-version`       | Fallback Rust version                                            | `1.75`                                            |
-| `fallback-node-version`       | Fallback Node.js version                                         | `22`                                              |
-| `fallback-coverage-threshold` | Fallback coverage threshold                                      | `80`                                              |
-| `include-linux`               | Include ubuntu-latest                                            | `true`                                            |
-| `include-macos`               | Include macos-latest                                             | `false`                                           |
-| `include-windows`             | Include windows-latest                                           | `false`                                           |
-| `use-docker`                  | Run the action inside the published container image              | `false`                                           |
-| `docker-image`                | Docker image reference (tag or digest) when `use-docker` is true | `ghcr.io/jdfalk/ci-generate-matrices-action:main` |
+| Input                         | Description                                                      | Default                                          |
+| ----------------------------- | ---------------------------------------------------------------- | ------------------------------------------------ |
+| `repository-config`           | Repository configuration as JSON                                 | `{}`                                             |
+| `fallback-go-version`         | Fallback Go version                                              | `1.23`                                           |
+| `fallback-python-version`     | Fallback Python version                                          | `3.12`                                           |
+| `fallback-rust-version`       | Fallback Rust version                                            | `1.75`                                           |
+| `fallback-node-version`       | Fallback Node.js version                                         | `22`                                             |
+| `fallback-coverage-threshold` | Fallback coverage threshold                                      | `80`                                             |
+| `include-linux`               | Include ubuntu-latest                                            | `true`                                           |
+| `include-macos`               | Include macos-latest                                             | `false`                                          |
+| `include-windows`             | Include windows-latest                                           | `false`                                          |
+| `use-docker`                  | Run the action inside the published container image              | `false`                                          |
+| `docker-image`                | Docker image reference (tag or digest) when `use-docker` is true | `ghcr.io/falkcorp/gha-ci-generate-matrices:main` |
 
 ## Outputs
 
